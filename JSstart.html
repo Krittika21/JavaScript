@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html>
+	<body>
+		<style>
+			label
+			{
+				display:block;
+			}
+			.labels
+			{
+				padding-bottom:20px;
+			}
+			.padding
+			{
+				padding-bottom:40px;
+			}
+			.lang
+			{
+				display:inline;
+			}
+		</style>
+		<form>
+			<div class="labels">
+				<label>First name:</label>
+				<input id="FN" type="text" autofocus/>
+			</div>
+			<div class="labels">
+				<label>Last name:</label>
+				<input id="LN" type="text"/>
+			</div>
+			<div class="labels">
+				<label>Email:</label>
+				<input id="ml" type="email"/>
+			</div>
+			<div class="labels">
+				<label>Contact number:</label>
+				<input id="num" type="text"/>
+			</div>
+			<div class="labels">
+				<label>Address:</label>
+				<textarea rows="3" columns="12" id="adds" input type="text"></textarea/>
+			</div>
+			</div>
+			<div class="labels">
+				<label>Username:</label>
+				<input id="usr" type="text"/>
+			</div>
+			<div class="labels">
+				<label>Password:</label>
+				<input id="pass" type="password"/>
+			</div>
+			<div class="labels">
+				<label>Gender:</label>
+				<input type="radio" id="male" name="gender" value="male" onclick="InsertGender()">Male</input>
+				<input type="radio" id="female" name="gender" value="female" onclick="InsertGender()">Female</input>
+			</div>
+			<script>
+				function InsertGender()
+				{
+					if(document.getElementById("male").checked == true)
+					{
+						var gndr = "Male";
+					}
+					else if(document.getElementById("female").checked == true)
+					{
+						var gndr = "Female";
+					}
+					else
+					{
+						var gndr=" ";
+					}
+					return gndr;
+				}
+			</script>
+			<div class="labels">
+				<label>Qualifications:</label>
+				<select id="list">
+					<option> --select-- </option>
+					<script>
+						var select = document.getElementById("list");
+						var options = ["Web Developer","Web Designer","Android Developer"];
+						for(var i = 0 ; i < options.length; i++)
+						{
+							var opt = options[i];
+							var element = document.createElement("option");
+							element.textContent = opt;
+							element.value = opt;
+							select.appendChild(element);
+						}
+					</script>
+				</select>
+			</div>
+			<div>
+				<label>Experience:</label>
+				<select id="ExpList">
+				<option> --select-- </option>
+				<script>
+					var select = document.getElementById("ExpList");
+					var options2 = ["Fresher","2-5 years","more than 5years"];
+					for(var i = 0 ; i < options2.length; i++)
+					{
+						var opt = options2[i];
+						var element = document.createElement("option");
+						element.textContent = opt;
+						element.value = opt;
+						select.appendChild(element);
+					}
+				  </script>
+				</select>
+			</div>
+			<div class="labels">
+			 <label>Coding Languages:</label>
+				<input type="checkbox" name="code1" id="d1"/><label id="pref7" class="Lang"></label>
+				<input type="checkbox" name="code1" id="d2"/><label id="pref8" class="Lang"></label>
+				<input type="checkbox" name="code1" id="d3"/><label id="pref9" class="Lang"></label>
+				<input type="checkbox" name="code1" id="d4"/><label id="pref10" class="Lang"></label>
+				<input type="checkbox" name="code1" id="d5"/><label id="pref11" class="Lang"></label>
+			</div>
+			<script>
+// Create an object array:
+			var arrayOb =[ 
+			{
+				langName: "C/C++",
+				IsEnabled:false
+			},
+			{
+				langName: "Java",
+				IsEnabled:true
+			},
+			{
+				langName: "C#",
+				IsEnabled:true
+			},
+			{
+				langName: "Php",
+				IsEnabled:false
+			},
+			{
+				langName: "Python",
+				IsEnabled:false
+			}];
+				/*function language(langName, Enabled)
+					{
+						this.langName=langName;
+						this.Enabled=Enabled;
+					}
+					var arr[0] = new arr("C/C++", false);
+					var arr[1] = new arr("Java", true);
+					var arr[2] = new language("C#", true);
+					var arr[3] = new language("PHP", false);
+					var arr[4] = new language("Python",false);*/
+					
+// Display some data from the object array:
+			document.getElementById("pref7").innerHTML = arrayOb[0].langName;
+			document.getElementById("pref8").innerHTML = arrayOb[1].langName;
+			document.getElementById("pref9").innerHTML = arrayOb[2].langName;
+			document.getElementById("pref10").innerHTML = arrayOb[3].langName;
+			document.getElementById("pref11").innerHTML = arrayOb[4].langName;
+			
+			document.getElementById("d1").checked = arrayOb[0].IsEnabled;
+			document.getElementById("d2").checked = arrayOb[1].IsEnabled;
+			document.getElementById("d3").checked = arrayOb[2].IsEnabled;
+			document.getElementById("d4").checked = arrayOb[3].IsEnabled;
+			document.getElementById("d5").checked = arrayOb[4].IsEnabled;
+		</script>
+				<div>
+				<input type="submit" onclick="infos()" id="pref6" value="submit"/>
+				<script>
+					var Items="";
+					function Selected(lg)
+					{
+						if(lg === "C/C++")
+						{
+							if(arrayOb[0].IsEnabled!=true)
+							{
+								document.getElementById("d1").checked = true;
+								arrayOb[0].IsEnabled = true;
+							}
+							else
+							{
+								document.getElementById("d1").checked = false;
+								arrayOb[0].IsEnabled = false;
+								Items+=arrayOb[0].langName;
+							}
+						}
+						if(lg === "Java")
+						{
+							if(arrayOb[1].IsEnabled!=true)
+							{
+								document.getElementById("d2").checked = true;
+								arrayOb[1].IsEnabled = true;
+							}
+							else
+							{
+								document.getElementById("d2").checked = false;
+								arrayOb[1].IsEnabled = false;
+								Items+=arrayOb[1].langName;
+							}
+						}
+						if(lg === "C#")
+						{
+							if(arrayOb[2].IsEnabled!=true)
+							{
+								document.getElementById("d3").checked = true;
+								arrayOb[2].IsEnabled = true;
+							}
+							else
+							{
+								document.getElementById("d3").checked = false;
+								arrayOb[2].IsEnabled = false;
+								Items+=arrayOb[2].langName;
+							}
+						}
+						if(lg === "PHP")
+						{
+							if(arrayOb[3].IsEnabled!=true)
+							{
+								document.getElementById("d4").checked = true;
+								arrayOb[3].IsEnabled = true;
+							}
+							else
+							{
+								document.getElementById("d4").checked = false;
+								arrayOb[3].IsEnabled = false;
+								Items+=arrayOb[3].langName;
+							}
+						}
+						if(lg === "Python")
+						{
+							if(arrayOb[4].IsEnabled!=true)
+							{
+								document.getElementById("d5").checked = true;
+								arrayOb[4].IsEnabled = true;
+							}
+							else
+							{
+								document.getElementById("d5").checked = false;
+								arrayOb[4].IsEnabled = false;
+								Items+=arrayOb[4].langName;
+							}
+						}
+					}
+					function infos()
+					{
+						var info=
+						{
+							first:document.getElementById("FN").value,
+							last:document.getElementById("LN").value,
+							mail:document.getElementById("ml").value,
+							number:document.getElementById("num").value, 
+							address:document.getElementById("adds").value,
+							user:document.getElementById("usr").value,
+							password:document.getElementById("pass").value,
+							gndr:InsertGender(),
+							qual:Options[document.getElementById("list").selectedIndex],
+							exps:Options2[document.getElementById("ExpList").selectedIndex],
+							itm:Items
+						};
+								 /* window.alert(info.first+info.last+info.mail+info.number+info.address+info.user+info.password+info.gndr+info.qual+info.exps+info.itm);*/
+						console.log(info);
+					}
+				</script>
+			</div>
+		</form>
+	</body>
+</html>
